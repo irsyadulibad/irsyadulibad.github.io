@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn() => view('pages.dashboard'));
+
+Route::get('/login', fn() => view('pages.auth.login'))
+    ->name('auth.login');
+
+Route::get('/register', fn() => view('pages.auth.register'))
+    ->name('auth.register');
+
+Route::get('/forgot-pass', fn() => view('pages.auth.forgot-pass'))
+    ->name('auth.forgot-pass');
