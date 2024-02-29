@@ -79,7 +79,7 @@
                         <div class="d-flex justify-content-center align-items-center mt-4">
                             <span class="fw-normal">
                                 Already registered?
-                                <a href="{{ route('auth.login') }}" class="fw-bold">Login</a>
+                                <a href="{{ route('login') }}" class="fw-bold">Login</a>
                             </span>
                         </div>
                     </div>

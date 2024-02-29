@@ -57,12 +57,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('auth.login') }}" class="btn btn-secondary d-flex align-items-center justify-content-center btn-upgrade-pro">
-                    <span class="sidebar-icon d-inline-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-fw fa-right-from-bracket"></i>
-                    </span>
-                    <span>Logout</span>
-                </a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    @method('DELETE')
+
+                    <button href="{{ route('login') }}" class="btn btn-secondary d-flex align-items-center justify-content-center btn-upgrade-pro">
+                        <span class="sidebar-icon d-inline-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-fw me-2 fa-right-from-bracket"></i>
+                        </span>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </li>
         </ul>
     </div>

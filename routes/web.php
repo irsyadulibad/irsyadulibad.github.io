@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,14 +13,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::redirect('/', '/login');
 
-Route::get('/', fn() => view('pages.dashboard'));
+Route::middleware('auth')->group(function() {
+    Route::get('dashboard', fn() => view('pages.dashboard'))->name('dashboard');
+    Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
+});
 
-Route::get('/login', fn() => view('pages.auth.login'))
-    ->name('auth.login');
+Route::middleware('guest')->controller(AuthController::class)->group(function() {
+    Route::get('login', 'login')->name('login');
+    Route::post('login', 'authenticate');
+});
 
 Route::get('/register', fn() => view('pages.auth.register'))
-    ->name('auth.register');
+    ->name('register');
 
 Route::get('/forgot-pass', fn() => view('pages.auth.forgot-pass'))
-    ->name('auth.forgot-pass');
+    ->name('forgot-pass');
