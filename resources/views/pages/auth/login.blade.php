@@ -78,4 +78,27 @@
             </div>
         </div>
     </section>
+
+    @push('script')
+    <script>
+        Swal.fire({
+            icon: 'info',
+            title: 'Informasi Detail Login',
+            html: `
+                <div style="display: flex; justify-content: center;">
+                    <table cellpadding="10" style="text-align:left; font-size: 12pt;">
+                        <tr>
+                            <td>Email</td>
+                            <td>admin@mail.com</td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td>admin123</td>
+                        </tr>
+                    </table>
+                </div>
+            `,
+        });
+    </script>
+    @endpush
 </x-auth-layout>

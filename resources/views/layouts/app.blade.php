@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css">
     <link rel="stylesheet" href="{{ asset('css/volt.css') }}">
+
+    @stack('style')
 </head>
 <body>
     <x-sidebar/>
@@ -27,5 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/volt.js') }}"></script>
+
+    @stack('script')
 </body>
 </html>
