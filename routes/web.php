@@ -23,10 +23,10 @@ Route::middleware('auth')->group(function() {
 Route::middleware('guest')->controller(AuthController::class)->group(function() {
     Route::get('login', 'login')->name('login');
     Route::post('login', 'authenticate');
-});
 
-Route::get('/register', fn() => view('pages.auth.register'))
-    ->name('register');
+    Route::get('register', 'register')->name('register');
+    Route::post('register', 'create');
+});
 
 Route::get('/forgot-pass', fn() => view('pages.auth.forgot-pass'))
     ->name('forgot-pass');
