@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -35,8 +35,12 @@ class AuthController extends Controller
         $data = $request->validated();
         $data['password'] = Hash::make($request->password);
 
-        User::create($data);
-        return back()->with('swal_s', 'Akun berhasil dibuat. Silahkan login');
+        $user = User::create($data);
+
+        Auth::attempt($request->only('email', 'password'));
+        event(new Registered($user));
+
+        return to_route('verification.notice')->with('resent', true);
     }
 
     public function logout()

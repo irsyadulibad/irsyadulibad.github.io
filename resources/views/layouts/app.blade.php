@@ -30,6 +30,8 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/volt.js') }}"></script>
 
+    <x-vendor.sweetalert/>
+
     @stack('script')
 </body>
 </html>

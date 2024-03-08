@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/login');
 
 Route::middleware('auth')->group(function() {
-    Route::get('dashboard', fn() => view('pages.dashboard'))->name('dashboard');
-    Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::middleware('verified')->group(function() {
+        Route::get('dashboard', fn() => view('pages.dashboard'))->name('dashboard');
+        Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
+    });
+
+    Route::prefix('email')
+        ->name('verification.')
+        ->controller(VerificationController::class)
+        ->group(function() {
+            Route::get('verify', 'notice')->name('notice');
+            Route::get('verify/{id}/{hash}', 'verify')->name('verify');
+            Route::post('resend', 'resend')->name('resend');
+        });
 });
 
 Route::middleware('guest')->controller(AuthController::class)->group(function() {
