@@ -32,14 +32,6 @@
         </div>
         <ul class="nav flex-column pt-3 pt-md-0">
             <li class="nav-item">
-                <a href="../../index.html" class="nav-link d-flex align-items-center">
-                    <span class="sidebar-icon">
-                        <img src="{{ asset('img/brand/light.svg') }}" height="20" width="20" alt="Volt Logo">
-                    </span>
-                    <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
-                </a>
-            </li>
-            <li class="nav-item  active ">
                 <a href="../../pages/dashboard/dashboard.html" class="nav-link">
                     <span class="sidebar-icon">
                         <i class="fa-solid fa-fw fa-chart-pie"></i>

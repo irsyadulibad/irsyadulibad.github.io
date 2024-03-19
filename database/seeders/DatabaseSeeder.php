@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@mail.com',
             'password' => Hash::make('admin123'),
+            'role' => 'admin',
         ]);
 
         $this->call(BiodataSeeder::class);
