@@ -18,8 +18,6 @@ class VerificationController extends Controller
     {
         $request->fulfill();
         return to_route('dashboard')->with('swal_s', 'Berhasil memverifikasi email');
-
-        Response::HTTP_FORBIDDEN;
     }
 
     public function resend(Request $request)

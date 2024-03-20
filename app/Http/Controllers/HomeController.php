@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $articles = Article::latest()->get();
+        $articles = Article::where('status', 'approved')->latest()->get();
         return view('pages.home', compact('articles'));
     }
 }

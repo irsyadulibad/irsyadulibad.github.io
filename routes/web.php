@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
+
         Route::middleware('role:writer')->group(function() {
             Route::post('{article}/approval', [ArticleController::class, 'approval'])
                 ->name('articles.approval');

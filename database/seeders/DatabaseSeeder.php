@@ -21,6 +21,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@mail.com',
             'password' => Hash::make('admin123'),
             'role' => 'admin',
+            'email_verified_at' => now(),
+        ]);
+
+        User::create([
+            'name' => 'Writer',
+            'email' => 'penulis@mail.com',
+            'password' => Hash::make('penulis123'),
+            'role' => 'writer',
+            'email_verified_at' => now(),
         ]);
 
         $this->call(BiodataSeeder::class);
