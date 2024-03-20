@@ -20,7 +20,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h2>{{ $article->title }}</h2>
+                <h1>{{ $article->title }}</h1>
                 <div class="d-flex gap-2">
                     <h6>{{ $article->user->name }}</h6>
                     |

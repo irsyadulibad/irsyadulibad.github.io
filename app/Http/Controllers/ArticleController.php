@@ -22,6 +22,11 @@ class ArticleController extends Controller
         return view('pages.articles.show', compact('article'));
     }
 
+    public function read(Article $article)
+    {
+        return view('pages.articles.read', compact('article'));
+    }
+
     public function review(Article $article)
     {
         return view('pages.articles.show', [

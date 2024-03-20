@@ -3,6 +3,8 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::redirect('/', '/login');
+Route::get('/', HomeController::class)->name('home');
+Route::get('read/{article:slug}', [ArticleController::class, 'read'])
+    ->name('articles.read');
 
 Route::middleware('auth')->group(function() {
     Route::middleware('verified')->group(function() {
@@ -25,6 +29,8 @@ Route::middleware('auth')->group(function() {
 
         Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
         Route::middleware('role:writer')->group(function() {
+            Route::post('{article}/approval', [ArticleController::class, 'approval'])
+                ->name('articles.approval');
             Route::resource('articles', ArticleController::class)
                 ->except('show', 'index');
         });
@@ -34,11 +40,12 @@ Route::middleware('auth')->group(function() {
             ->prefix('articles')
             ->group(function() {
                 Route::get('{article}/review', 'review')->name('articles.review');
-                Route::post('{article}/approval', 'approval')->name('articles.approval');
                 Route::post('{article}/approved', 'approved')->name('articles.approved');
                 Route::post('{article}/denied', 'denied')->name('articles.denied');
                 Route::get('{article}', 'show')->name('articles.show');
             });
+
+        Route::resource('users', UserController::class);
     });
 
     Route::prefix('email')

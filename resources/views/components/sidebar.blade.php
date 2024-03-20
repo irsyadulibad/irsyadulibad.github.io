@@ -47,6 +47,16 @@
                     <span class="sidebar-text">Artikel</span>
                 </a>
             </li>
+            @role('admin')
+            <li class="nav-item @active('users.*')">
+                <a href="{{ route('users.index') }}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-fw fa-users"></i>
+                    </span>
+                    <span class="sidebar-text">Manajemen User</span>
+                </a>
+            </li>
+            @endrole
             <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
             <li class="nav-item">
                 <form action="{{ route('logout') }}" method="post">
