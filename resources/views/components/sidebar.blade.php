@@ -39,15 +39,15 @@
                     <span class="sidebar-text">Dashboard</span>
                 </a>
             </li>
-            <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
             <li class="nav-item">
-                <a href="https://themesberg.com/docs/volt-bootstrap-5-dashboard/getting-started/quick-start/" target="_blank" class="nav-link d-flex align-items-center">
+                <a href="{{ route('articles.index') }}" class="nav-link">
                     <span class="sidebar-icon">
-                        <i class="fa-solid fa-fw fa-circle-question"></i>
+                        <i class="fa-solid fa-fw fa-newspaper"></i>
                     </span>
-                    <span class="sidebar-text">Documentation <span class="badge badge-sm bg-secondary ms-1 text-gray-800">v1.4</span></span>
+                    <span class="sidebar-text">Artikel</span>
                 </a>
             </li>
+            <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
             <li class="nav-item">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf

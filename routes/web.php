@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,24 @@ Route::middleware('auth')->group(function() {
     Route::middleware('verified')->group(function() {
         Route::get('dashboard', fn() => view('pages.dashboard'))->name('dashboard');
         Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
+
+        Route::controller(ArticleController::class)
+            ->middleware('role:admin')
+            ->prefix('articles')
+            ->group(function() {
+                Route::get('{article}/review', 'review')->name('articles.review');
+                Route::post('{article}/approval', 'approval')->name('articles.approval');
+                Route::post('{article}/approved', 'approved')->name('articles.approved');
+                Route::post('{article}/denied', 'denied')->name('articles.denied');
+                Route::get('{article}', 'show')->name('articles.show');
+            });
+
+        Route::middleware('role:writer')->group(function() {
+            Route::resource('articles', ArticleController::class)
+                ->except('show', 'index');
+        });
     });
 
     Route::prefix('email')
