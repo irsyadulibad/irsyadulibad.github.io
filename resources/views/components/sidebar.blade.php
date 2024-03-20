@@ -39,7 +39,7 @@
                     <span class="sidebar-text">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item @active('articles.*')">
                 <a href="{{ route('articles.index') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <i class="fa-solid fa-fw fa-newspaper"></i>

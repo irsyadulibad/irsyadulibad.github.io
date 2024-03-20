@@ -23,6 +23,10 @@ Route::middleware('auth')->group(function() {
         Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
+        Route::middleware('role:writer')->group(function() {
+            Route::resource('articles', ArticleController::class)
+                ->except('show', 'index');
+        });
 
         Route::controller(ArticleController::class)
             ->middleware('role:admin')
@@ -34,11 +38,6 @@ Route::middleware('auth')->group(function() {
                 Route::post('{article}/denied', 'denied')->name('articles.denied');
                 Route::get('{article}', 'show')->name('articles.show');
             });
-
-        Route::middleware('role:writer')->group(function() {
-            Route::resource('articles', ArticleController::class)
-                ->except('show', 'index');
-        });
     });
 
     Route::prefix('email')

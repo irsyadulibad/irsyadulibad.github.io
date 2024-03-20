@@ -5,12 +5,14 @@
                 <h2 class="h4">Artikel</h2>
                 <p class="mb-0">Semua artikel yang ditulis.</p>
             </div>
+            @role('writer')
             <div class="btn-toolbar mb-2 mb-md-0">
                 <a href="{{ route('articles.create') }}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
                     <i class="fas fa-fw fa-plus me-2"></i>
                     Tambah Baru
                 </a>
             </div>
+            @endrole
         </div>
     </x-slot>
 
