@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ Route::redirect('/', '/login');
 
 Route::middleware('auth')->group(function() {
     Route::middleware('verified')->group(function() {
-        Route::get('dashboard', fn() => view('pages.dashboard'))->name('dashboard');
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
         Route::delete('logout', [AuthController::class, 'logout'])->name('logout');
 
         Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');

@@ -31,8 +31,8 @@
             </div>
         </div>
         <ul class="nav flex-column pt-3 pt-md-0">
-            <li class="nav-item">
-                <a href="../../pages/dashboard/dashboard.html" class="nav-link">
+            <li class="nav-item @active('dashboard')">
+                <a href="{{ route('dashboard') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <i class="fa-solid fa-fw fa-chart-pie"></i>
                     </span>
